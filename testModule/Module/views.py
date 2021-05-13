@@ -13,7 +13,7 @@ result = 100
 class Model(nn.Module):
     def __init__(self):
         super(Model, self).__init__()
-        self.bert = BertModel.from_pretrained(r'D:\code\testModule\Module\bert_pretrained')  # 加载预训练模型
+        self.bert = BertModel.from_pretrained('Module/bert_pretrained')  # 加载预训练模型
         for param in self.bert.parameters():
             param.requires_grad = True  # 代表做微调
         self.fc = nn.Linear(768, 2)
@@ -32,7 +32,7 @@ class Model(nn.Module):
 def word_clean(sentence):
     content = BeautifulSoup(sentence, "html.parser").get_text()
     content = content.lower()
-    tokenizer = BertTokenizer.from_pretrained(r'D:\code\testModule\Module\bert_pretrained')
+    tokenizer = BertTokenizer.from_pretrained('Module/bert_pretrained')
     token = tokenizer.tokenize(content)
     token.insert(0, '[CLS]')
     if len(token) < 512:
